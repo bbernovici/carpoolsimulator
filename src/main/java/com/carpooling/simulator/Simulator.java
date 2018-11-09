@@ -4,6 +4,7 @@ import com.rabbitmq.client.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 public class Simulator {
@@ -12,6 +13,11 @@ public class Simulator {
     private Channel channel;
 
     public Simulator() {
+
+    }
+
+    @PostConstruct
+    public void simulate() {
         while(true) {
             try {
                 channel.queueDeclare("paths.simulator", false, false, false, null);
